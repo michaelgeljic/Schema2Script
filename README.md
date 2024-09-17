@@ -9,4 +9,5 @@ Let people know what your project can do specifically.
 
 - [ ] Kristina Marasovic
 - [ ] Franko Fister
+- [] Marija Todoric
 
