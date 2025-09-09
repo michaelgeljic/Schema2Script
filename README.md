@@ -8,6 +8,5 @@ Let people know what your project can do specifically.
 ## Members
 
 - [ ] Kristina Marasovic
-- [ ] Franko Fister
-- [] Marija Todoric
+- [ ] 
 
