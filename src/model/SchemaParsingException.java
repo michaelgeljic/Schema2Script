@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Custom exception for handling errors during schema parsing.
  * <p>
@@ -14,7 +16,7 @@
 public class SchemaParsingException extends Exception {
 
     /**
-     * Creates a new {@code SchemaParsingException} with a specific error message.
+     * Creates a new {@code model.SchemaParsingException} with a specific error message.
      *
      * @param message A human-readable description of the error.
      */
@@ -23,7 +25,7 @@ public class SchemaParsingException extends Exception {
     }
 
     /**
-     * Creates a new {@code SchemaParsingException} with a message and underlying cause.
+     * Creates a new {@code model.SchemaParsingException} with a message and underlying cause.
      * <p>
      * This constructor is useful when another exception (like {@link java.io.IOException}
      * or a parsing library error) triggered the parsing failure.

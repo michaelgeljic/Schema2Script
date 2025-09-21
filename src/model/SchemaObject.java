@@ -1,3 +1,5 @@
+package model;
+
 import java.util.List;
 
 public class SchemaObject {
@@ -19,6 +21,6 @@ public class SchemaObject {
 
     @Override
     public String toString(){
-        return "SchemaObject{}" + "name = " + name + ", fields= " + fields + "}" ;
+        return "model.SchemaObject{}" + "name = " + name + ", fields= " + fields + "}" ;
     }
 }
