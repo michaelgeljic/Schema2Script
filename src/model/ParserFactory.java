@@ -10,7 +10,7 @@ public class ParserFactory {
             case "xml":
                 return new XmlParser();
             case "json":
-                return new JsonParser();
+                return new JSONParser();
             default:
                 throw new IllegalArgumentException("Unsupported schema format: " + format);
         }

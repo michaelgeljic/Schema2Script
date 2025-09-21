@@ -1,3 +1,5 @@
+package model;
+
 import java.io.File;
 import java.util.Arrays;
 
@@ -17,12 +19,12 @@ public class XmlParser implements SchemaParser {
         }
 
         
-        // Return a mock SchemaObject (hardcoded)
+        // Return a mock model.SchemaObject (hardcoded)
         return createMockSchemaObject();
     }
 
     /**
-     * Creates a mock SchemaObject that mimics a parsed schema.
+     * Creates a mock model.SchemaObject that mimics a parsed schema.
      */
     private SchemaObject createMockSchemaObject() {
         // Hardcode some fields to simulate schema fields
