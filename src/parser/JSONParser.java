@@ -26,8 +26,15 @@ public class JSONParser implements SchemaParser {
      * @return A {@link SchemaObject} representing the parsed schema.
      */
     @Override
-    public SchemaObject parse(File schemaFile) {
+    public SchemaObject parse(File schemaFile) throws SchemaParsingException{
         System.out.println("Simulating parsing of a JSON schema file: " + schemaFile.getAbsolutePath());
+
+        if (!schemaFile.exists()) {
+            throw new SchemaParsingException("JSON file not found: " + schemaFile.getAbsolutePath());
+        }
+        if (!schemaFile.getName().toLowerCase().endsWith(".json")) {
+            throw new SchemaParsingException("Invalid file format. Expected a .json file.");
+        }
 
         return createMockSchemaObject();
     }

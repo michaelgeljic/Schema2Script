@@ -4,10 +4,19 @@ import java.util.Arrays;
 public class XmlParser implements SchemaParser {
 
     @Override
-    public SchemaObject parse(File schemaFile) {
+    public SchemaObject parse(File schemaFile) throws SchemaParsingException{
         // Simulate reading the XML file by logging its path
         System.out.println("Simulating parsing of XML schema file: " + schemaFile.getAbsolutePath());
 
+
+        if (!schemaFile.exists()) {
+            throw new SchemaParsingException("XML file not found: " + schemaFile.getAbsolutePath());
+        }
+        if (!schemaFile.getName().toLowerCase().endsWith(".xml")) {
+            throw new SchemaParsingException("Invalid file format. Expected a .xml file.");
+        }
+
+        
         // Return a mock SchemaObject (hardcoded)
         return createMockSchemaObject();
     }
