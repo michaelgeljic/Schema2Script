@@ -1,4 +1,4 @@
-image: kmarasovic/alpine-jdk17-ant-mvn
+image: eclipse-temurin:21
 
 stages:
   - build
