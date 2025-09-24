@@ -5,6 +5,10 @@ stages:
   - test
   - package
 
+before_script:
+  - apt-get update && apt-get install -y ant
+  - ant -version
+
 build-job:
   stage: build
   script:
