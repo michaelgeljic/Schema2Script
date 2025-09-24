@@ -1,0 +1,33 @@
+image: kmarasovic/alpine-jdk17-ant-mvn
+
+stages:
+  - build
+  - test
+  - package
+
+build-job:
+  stage: build
+  script:
+    - ant clean compile
+  artifacts:
+    paths:
+      - build/classes
+
+test-job:
+  stage: test
+  script:
+    - ant test
+  artifacts:
+    when: always
+    paths:
+      - build/test/results
+      - build/test/classes
+      - build/test/reports
+
+package-job:
+  stage: package
+  script:
+    - ant jar
+  artifacts:
+    paths:
+      - dist
