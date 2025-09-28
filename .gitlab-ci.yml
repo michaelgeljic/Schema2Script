@@ -1,37 +1,23 @@
-image: eclipse-temurin:21
-
 stages:
   - build
-  - test
   - package
 
-before_script:
-  - apt-get update && apt-get install -y ant
-  - ant -version
-
-build-job:
+build:
   stage: build
+  image: eclipse-temurin:21
   script:
-    - ant clean compile
+    - mkdir -p classes
+    - javac -d classes $(find src -name "*.java")
   artifacts:
     paths:
-      - build/classes
+      - classes/
 
-test-job:
-  stage: test
-  script:
-    - ant test
-  artifacts:
-    when: always
-    paths:
-      - build/test/results
-      - build/test/classes
-      - build/test/reports
-
-package-job:
+package:
   stage: package
+  image: eclipse-temurin:21
   script:
-    - ant jar
+    - mkdir -p dist
+    - jar cvf dist/schema2script.jar -C classes .
   artifacts:
     paths:
-      - dist
+      - dist/schema2script.jar
