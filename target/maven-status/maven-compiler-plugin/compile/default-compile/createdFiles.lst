@@ -1,0 +1,9 @@
+main\java\model\SchemaParsingException.class
+main\java\controller\SchemaController.class
+main\java\model\SchemaObject.class
+main\java\model\JSONParser.class
+main\java\model\ParserFactory.class
+main\java\model\SchemaParser.class
+main\java\model\XmlParser.class
+main\java\view\SchemaView.class
+main\java\model\SchemaModel.class

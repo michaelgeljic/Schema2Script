@@ -1,8 +1,8 @@
-package controller;
+package main.java.controller;
 
-import model.*;
+import main.java.model.*;
 
-import view.SchemaView;
+import main.java.view.SchemaView;
 
 import java.io.File;
 
@@ -20,8 +20,8 @@ public class SchemaController {
     /**
      * Handles the upload of a schema file:
      *  - chooses parser by file extension
-     *  - updates model with parsed schema
-     *  - notifies view of success or error
+     *  - updates main.java.model with parsed schema
+     *  - notifies main.java.view of success or error
      */
     public void handleSchemaUpload(File schemaFile) {
         try {
@@ -30,10 +30,10 @@ public class SchemaController {
 
             SchemaObject schemaObject = parser.parse(schemaFile);
 
-            // update model
+            // update main.java.model
             model.setSchema(schemaObject);
 
-            // notify view
+            // notify main.java.view
             view.showSuccess("Schema parsed successfully: " + schemaObject.getName());
 
         } catch (SchemaParsingException e) {
