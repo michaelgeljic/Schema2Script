@@ -4,24 +4,20 @@ stages:
 
 build:
   stage: build
-  image: eclipse-temurin:21
+  image: maven:3.9.9-eclipse-temurin-21
   script:
-    - apt-get update && apt-get install -y ant
-    - ant compile
-    - mkdir -p classes
-    - cp -r build/classes/* classes/
+    - mvn -B compile
   artifacts:
     paths:
-      - classes/
+      - target/classes/
 
 package:
   stage: package
-  image: eclipse-temurin:21
+  image: maven:3.9.9-eclipse-temurin-21
   script:
-    - apt-get update && apt-get install -y ant
-    - ant jar
+    - mvn -B package -DskipTests
     - mkdir -p dist
-    - cp build/*.jar dist/schema2script.jar
+    - cp target/*.jar dist/schema2script.jar
   artifacts:
     paths:
       - dist/schema2script.jar
