@@ -6,8 +6,10 @@ build:
   stage: build
   image: eclipse-temurin:21
   script:
+    - apt-get update && apt-get install -y ant
+    - ant compile
     - mkdir -p classes
-    - javac -d classes $(find src -name "*.java")
+    - cp -r build/classes/* classes/
   artifacts:
     paths:
       - classes/
@@ -16,8 +18,10 @@ package:
   stage: package
   image: eclipse-temurin:21
   script:
+    - apt-get update && apt-get install -y ant
+    - ant jar
     - mkdir -p dist
-    - jar cvf dist/schema2script.jar -C classes .
+    - cp build/*.jar dist/schema2script.jar
   artifacts:
     paths:
       - dist/schema2script.jar
