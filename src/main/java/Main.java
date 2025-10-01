@@ -18,6 +18,8 @@ public class Main {
             // Get the correct parser
             SchemaParser parser = ParserFactory.get(type);
 
+            parser.logStart(schemaFile);
+
             // Parse schema
             SchemaObject schema = parser.parse(schemaFile);
 
