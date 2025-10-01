@@ -3,6 +3,23 @@
 2025-10-01 10:02:39.847 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
 2025-10-01 10:02:39.848 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
 
+2025-10-01 10:22:48.649 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: /Users/helenamarkulin/Desktop/AppDev/schema2script800g7/src/main/resources/person.xml
+2025-10-01 10:22:48.650 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: person.xml
+2025-10-01 10:22:48.651 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
+2025-10-01 10:22:48.651 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+2025-10-01 10:22:48.652 INFO main.java.model.MySQLGenerator:18 - Starting CREATE TABLE generation for schema: MockSchemaObject
+2025-10-01 10:22:48.652 DEBUG main.java.model.MySQLGenerator:24 - Schema 'MockSchemaObject' has 3 fields: [field1, field2, field3]
+2025-10-01 10:22:48.652 DEBUG main.java.model.MySQLGenerator:39 - Adding field to CREATE TABLE statement: field1
+2025-10-01 10:22:48.652 DEBUG main.java.model.MySQLGenerator:39 - Adding field to CREATE TABLE statement: field2
+2025-10-01 10:22:48.652 DEBUG main.java.model.MySQLGenerator:39 - Adding field to CREATE TABLE statement: field3
+2025-10-01 10:22:48.652 INFO main.java.model.MySQLGenerator:49 - Successfully generated CREATE TABLE statement for schema: MockSchemaObject
+2025-10-01 10:22:48.653 DEBUG main.java.model.MySQLGenerator:50 - Generated SQL:
+CREATE TABLE MockSchemaObject (
+    field1 VARCHAR(255),
+    field2 VARCHAR(255),
+    field3 VARCHAR(255)
+);
+
 2025-10-01 10:28:29.669 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\lukab\schema2script800g7-1\src\main\resources\person.xml
 2025-10-01 10:28:29.672 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: person.xml
 2025-10-01 10:28:29.674 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
@@ -18,4 +35,5 @@
 2025-10-01 10:24:37.450 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: person.xml
 2025-10-01 10:24:37.450 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
 2025-10-01 10:24:37.451 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+
 
