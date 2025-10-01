@@ -8,10 +8,10 @@ import java.io.File;
 public class Main {
     public static void main(String[] args) {
         // Choose which type of schema to parse (hardcoded for testing in IntelliJ)
-        String type = "xml"; // or "xml"
+        String type = "json"; // or "xml"
 
         // Point to a file inside your project (adjust path if needed)
-        File schemaFile = new File("src/main/resources/person.xml");
+        File schemaFile = new File("src/main/resources/person.json");
         // File schemaFile = new File("src/main/resources/person.xml");
 
         try {
