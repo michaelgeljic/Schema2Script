@@ -1,0 +1,8 @@
+<schema name="Person">
+    <fields>
+        <field>id</field>
+        <field>firstName</field>
+        <field>lastName</field>
+        <field>age</field>
+    </fields>
+</schema>
