@@ -2,6 +2,7 @@
 2025-10-01 10:02:39.845 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: person.xml
 2025-10-01 10:02:39.847 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
 2025-10-01 10:02:39.848 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+
 2025-10-01 10:22:48.649 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: /Users/helenamarkulin/Desktop/AppDev/schema2script800g7/src/main/resources/person.xml
 2025-10-01 10:22:48.650 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: person.xml
 2025-10-01 10:22:48.651 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
@@ -18,3 +19,21 @@ CREATE TABLE MockSchemaObject (
     field2 VARCHAR(255),
     field3 VARCHAR(255)
 );
+
+2025-10-01 10:28:29.669 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\lukab\schema2script800g7-1\src\main\resources\person.xml
+2025-10-01 10:28:29.672 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: person.xml
+2025-10-01 10:28:29.674 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
+2025-10-01 10:28:29.676 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+2025-10-01 10:29:00.678 INFO main.java.model.SchemaParser:34 - Starting schema parsing for file: C:\Users\lukab\schema2script800g7-1\src\main\resources\person.xml
+2025-10-01 10:29:00.681 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\lukab\schema2script800g7-1\src\main\resources\person.xml
+2025-10-01 10:29:00.682 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: person.xml
+2025-10-01 10:29:00.683 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
+2025-10-01 10:29:00.684 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+
+2025-10-01 10:24:37.446 INFO main.java.model.ParserFactory:14 - Schema format requested: xml
+2025-10-01 10:24:37.450 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: /home/feuy/RIT/schema2script800g7/src/main/resources/person.xml
+2025-10-01 10:24:37.450 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: person.xml
+2025-10-01 10:24:37.450 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
+2025-10-01 10:24:37.451 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+
+
