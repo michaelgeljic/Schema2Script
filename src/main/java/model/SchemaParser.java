@@ -1,6 +1,7 @@
 package main.java.model;
 
 import java.io.File;
+import org.apache.logging.log4j.*;
 
 /**
  * Defines the contract for schema parsers that convert schema files
@@ -11,6 +12,8 @@ import java.io.File;
  * </p>
  */
 public interface SchemaParser {
+
+    Logger logger = LogManager.getLogger(SchemaParser.class);
 
     /**
      * Parses the given schema file and produces a {@link SchemaObject}.
@@ -26,4 +29,21 @@ public interface SchemaParser {
      *                                missing fields, or unexpected errors
      */
     SchemaObject parse(File schemaFile) throws SchemaParsingException;
+
+    default void logStart(File schemaFile){
+        logger.info("Starting schema parsing for file: {}", schemaFile.getAbsolutePath());
+
+    }
+
+    default void logSuccess(SchemaObject SchemaObject){
+        logger.debug("Parsed SchemaObject sucessfully: {}", SchemaObject);
+    }
+
+    default void logError(String message, Throwable t){
+        if (t!= null) {
+            logger.error(message, t);
+        } else {
+            logger.error(message);
+        }
+    }
 }
