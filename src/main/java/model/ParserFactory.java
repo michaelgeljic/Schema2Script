@@ -11,6 +11,8 @@ public class ParserFactory {
             logger.error("Schema format is null or empty");
         }
 
+        logger.info("Schema format requested: " + format);
+
         switch (format.toLowerCase()) {
             case "xml":
                 return new XmlParser();
