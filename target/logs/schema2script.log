@@ -37,3 +37,14 @@ CREATE TABLE MockSchemaObject (
 2025-10-01 10:24:37.451 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
 
 
+2025-10-01 10:45:06.487 INFO main.java.model.ParserFactory:14 - Schema format requested: json
+2025-10-01 10:45:06.627 INFO main.java.model.SchemaParser:34 - Starting schema parsing for file: C:\Users\zz6085\schema2script800g7-2\src\main\resources\person.json
+2025-10-01 10:45:06.628 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\zz6085\schema2script800g7-2\src\main\resources\person.json
+2025-10-01 10:45:06.629 ERROR main.java.model.JSONParser:28 - JSON file not found: {}C:\Users\zz6085\schema2script800g7-2\src\main\resources\person.json
+2025-10-01 10:46:45.035 INFO main.java.model.ParserFactory:14 - Schema format requested: json
+2025-10-01 10:46:45.278 INFO main.java.model.SchemaParser:34 - Starting schema parsing for file: C:\Users\zz6085\schema2script800g7-2\src\main\resources\person.json
+2025-10-01 10:46:45.279 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\zz6085\schema2script800g7-2\src\main\resources\person.json
+2025-10-01 10:46:45.279 DEBUG main.java.model.JSONParser:39 - Reading JSON tree from person.json
+2025-10-01 10:46:45.316 DEBUG main.java.model.JSONParser:48 - Validating required keys 'name' and 'fields'
+2025-10-01 10:46:45.317 DEBUG main.java.model.JSONParser:55 - Extracted schema name: Person
+2025-10-01 10:46:45.320 INFO main.java.model.JSONParser:74 - Parsed SchemaObject created: Person
