@@ -32,7 +32,7 @@ public class JSONParserTest {
 
     @Test
     void testValidJsonSchema() throws Exception {
-        File file = File.createTempFile("schema","json");
+        File file = File.createTempFile("schema",".json");
         try(FileWriter writer = new FileWriter(file)) {
             writer.write("{\"name\":\"Person\",\"fields\":[\"id\",\"firstName\"]}");
         }

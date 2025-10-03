@@ -21,5 +21,12 @@ public class SchemaValidator {
         if (fields == null || fields.isEmpty()) {
             throw new IllegalArgumentException("At least one field is required for " + schema.getName());
         }
+
+        Set<String> seen = new HashSet<>();
+        for (String field : fields) {
+            if (!seen.add(field)) {
+                throw new IllegalArgumentException("Duplicate field found: " + field);
+            }
+        }
     }
 }
