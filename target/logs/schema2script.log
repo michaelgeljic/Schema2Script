@@ -86,3 +86,61 @@ CREATE TABLE MockSchemaObject (
 2025-10-03 15:24:24.414 DEBUG main.java.model.JSONParser:48 - Validating required keys 'name' and 'fields'
 2025-10-03 15:24:24.414 DEBUG main.java.model.JSONParser:55 - Extracted schema name: Person
 2025-10-03 15:24:24.415 INFO main.java.model.JSONParser:74 - Parsed SchemaObject created: Person
+2025-10-03 16:37:22.976 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\micky\AppData\Local\Temp\invalid16850851722855598228.json
+2025-10-03 16:37:22.978 DEBUG main.java.model.JSONParser:39 - Reading JSON tree from invalid16850851722855598228.json
+2025-10-03 16:37:22.992 DEBUG main.java.model.JSONParser:48 - Validating required keys 'name' and 'fields'
+2025-10-03 16:37:22.992 ERROR main.java.model.JSONParser:50 - JSON schema missing required 'name' or 'fields'
+2025-10-03 16:37:23.010 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.json
+2025-10-03 16:37:23.010 ERROR main.java.model.JSONParser:28 - JSON file not found: {}C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.json
+2025-10-03 16:37:23.013 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\micky\AppData\Local\Temp\schhema2389723351190318133txt
+2025-10-03 16:37:23.014 WARN main.java.model.JSONParser:33 - Invalid file format detected: schhema2389723351190318133txt
+2025-10-03 16:37:23.018 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema11186841560341162038.json
+2025-10-03 16:37:23.018 DEBUG main.java.model.JSONParser:39 - Reading JSON tree from schema11186841560341162038.json
+2025-10-03 16:37:23.021 DEBUG main.java.model.JSONParser:48 - Validating required keys 'name' and 'fields'
+2025-10-03 16:37:23.021 DEBUG main.java.model.JSONParser:55 - Extracted schema name: Person
+2025-10-03 16:37:23.021 INFO main.java.model.JSONParser:74 - Parsed SchemaObject created: Person
+2025-10-03 16:37:41.031 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema6782668138008760647.xml
+2025-10-03 16:37:41.033 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: schema6782668138008760647.xml
+2025-10-03 16:37:41.034 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
+2025-10-03 16:37:41.035 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+2025-10-03 16:37:41.048 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.xml
+2025-10-03 16:37:41.048 ERROR main.java.model.XmlParser:19 - XML file not found: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.xml
+2025-10-03 16:37:41.051 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\Desktop\ISTE422\schema2script800g7\schema.txt
+2025-10-03 16:37:41.051 ERROR main.java.model.XmlParser:19 - XML file not found: C:\Users\micky\Desktop\ISTE422\schema2script800g7\schema.txt
+2025-10-03 16:38:05.150 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema2965085680902864682.xml
+2025-10-03 16:38:05.152 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: schema2965085680902864682.xml
+2025-10-03 16:38:05.152 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
+2025-10-03 16:38:05.153 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+2025-10-03 16:38:05.167 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.xml
+2025-10-03 16:38:05.167 ERROR main.java.model.XmlParser:19 - XML file not found: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.xml
+2025-10-03 16:38:05.170 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\Desktop\ISTE422\schema2script800g7\schema.txt
+2025-10-03 16:38:05.172 ERROR main.java.model.XmlParser:19 - XML file not found: C:\Users\micky\Desktop\ISTE422\schema2script800g7\schema.txt
+2025-10-03 16:39:40.839 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema9271216116609057461.xml
+2025-10-03 16:39:40.842 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: schema9271216116609057461.xml
+2025-10-03 16:39:40.843 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
+2025-10-03 16:39:40.844 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+2025-10-03 16:39:40.861 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.xml
+2025-10-03 16:39:40.861 ERROR main.java.model.XmlParser:19 - XML file not found: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.xml
+2025-10-03 16:39:40.864 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema10316631371923330179.txt
+2025-10-03 16:39:40.864 WARN main.java.model.XmlParser:24 - Invalid file format detected: schema10316631371923330179.txt
+2025-10-03 16:39:48.498 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\micky\AppData\Local\Temp\invalid15226010170407086145.json
+2025-10-03 16:39:48.499 DEBUG main.java.model.JSONParser:39 - Reading JSON tree from invalid15226010170407086145.json
+2025-10-03 16:39:48.513 DEBUG main.java.model.JSONParser:48 - Validating required keys 'name' and 'fields'
+2025-10-03 16:39:48.513 ERROR main.java.model.JSONParser:50 - JSON schema missing required 'name' or 'fields'
+2025-10-03 16:39:48.523 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.json
+2025-10-03 16:39:48.523 ERROR main.java.model.JSONParser:28 - JSON file not found: {}C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.json
+2025-10-03 16:39:48.527 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\micky\AppData\Local\Temp\schhema12816822479769552173txt
+2025-10-03 16:39:48.527 WARN main.java.model.JSONParser:33 - Invalid file format detected: schhema12816822479769552173txt
+2025-10-03 16:39:48.530 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema5082082599524811499.json
+2025-10-03 16:39:48.530 DEBUG main.java.model.JSONParser:39 - Reading JSON tree from schema5082082599524811499.json
+2025-10-03 16:39:48.532 DEBUG main.java.model.JSONParser:48 - Validating required keys 'name' and 'fields'
+2025-10-03 16:39:48.532 DEBUG main.java.model.JSONParser:55 - Extracted schema name: Person
+2025-10-03 16:39:48.533 INFO main.java.model.JSONParser:74 - Parsed SchemaObject created: Person
+2025-10-03 16:39:57.697 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema18237055952317601525.xml
+2025-10-03 16:39:57.699 DEBUG main.java.model.XmlParser:28 - Successfully validated XML file: schema18237055952317601525.xml
+2025-10-03 16:39:57.699 DEBUG main.java.model.XmlParser:40 - Creating mock SchemaObject with fields [field1, field2, field3]
+2025-10-03 16:39:57.700 INFO main.java.model.XmlParser:32 - Parsed SchemaObject created: MockSchemaObject
+2025-10-03 16:39:57.718 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.xml
+2025-10-03 16:39:57.719 ERROR main.java.model.XmlParser:19 - XML file not found: C:\Users\micky\Desktop\ISTE422\schema2script800g7\does_not_exist.xml
+2025-10-03 16:39:57.722 INFO main.java.model.XmlParser:16 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema18349003902279544481.txt
+2025-10-03 16:39:57.723 WARN main.java.model.XmlParser:24 - Invalid file format detected: schema18349003902279544481.txt

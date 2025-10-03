@@ -43,4 +43,16 @@ public class JSONParserTest {
         assertEquals("Person", result.getName());
         assertEquals(2,result.getFields().size());
     }
+
+    @Test
+    void testMissingFieldsMessage() throws Exception {
+        File tempFile = File.createTempFile("invalid", ".json");
+        try (FileWriter writer = new FileWriter(tempFile)) {
+            writer.write("{ \"name\": \"Person\" }");
+        }
+
+        SchemaParsingException ex = assertThrows(SchemaParsingException.class, () -> parser.parse(tempFile));
+        assertTrue(ex.getMessage().contains("missing required 'name' or 'fields'"));
+    }
+
 }
