@@ -26,16 +26,18 @@ class SchemaValidatorTest {
         SchemaModel model = new SchemaModel();
         model.setSchema(schema);
 
-        assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
+        assertTrue(ex.getMessage().contains("Schema name is required"));
     }
 
     @Test
     void testNoFields() {
-        SchemaObject schema = new SchemaObject("EmptySchema", List.of());
+        SchemaObject schema = new SchemaObject("Person", List.of());
         SchemaModel model = new SchemaModel();
         model.setSchema(schema);
 
-        assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
+        assertTrue(ex.getMessage().contains("At least one field is required"));
     }
 
     @Test
@@ -46,4 +48,7 @@ class SchemaValidatorTest {
 
         assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
     }
+
+
+
 }
