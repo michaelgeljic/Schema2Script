@@ -16,14 +16,19 @@ class XmlParserTest {
     @Test
     void testFileDoesNotExist() {
         File file = new File("does_not_exist.xml");
-        assertThrows(SchemaParsingException.class, () -> parser.parse(file));
+        SchemaParsingException ex = assertThrows(SchemaParsingException.class, () -> parser.parse(file));
+        assertTrue(ex.getMessage().contains("file not found"));
     }
 
+
     @Test
-    void testInvalidExtension() {
-        File file = new File("schema.txt");
-        assertThrows(SchemaParsingException.class, () -> parser.parse(file));
+    void testInvalidExtension() throws Exception {
+        File file = File.createTempFile("schema", ".txt");
+        SchemaParsingException ex = assertThrows(SchemaParsingException.class, () -> parser.parse(file));
+        assertTrue(ex.getMessage().contains("Invalid file format"));
     }
+
+
 
     @Test
     void testMockReturnsSchemaObject() throws Exception {
