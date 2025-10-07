@@ -9,12 +9,10 @@ import java.io.File;
 public class SchemaController {
     private final SchemaModel model;
     private final SchemaView view;
-    private final ParserFactory parserFactory;
 
     public SchemaController(SchemaModel model, SchemaView view) {
         this.model = model;
         this.view = view;
-        this.parserFactory = new ParserFactory();
     }
 
     /**
@@ -25,11 +23,10 @@ public class SchemaController {
      */
     public void handleSchemaUpload(File schemaFile) {
         try {
-            if (schemaFile == null || !schemaFile.exists() || !schemaFile.canRead()) {
-            throw new IllegalArgumentException("File is missing or cannot be read.");
-        }
+            validateFile(schemaFile);
+        
         String format = detectFormat(schemaFile);
-        SchemaParser parser = parserFactory.get(format);
+        SchemaParser parser = ParserFactory.get(format);
 
         SchemaObject schemaObject = parser.parse(schemaFile);
 
@@ -45,6 +42,21 @@ public class SchemaController {
         view.showError("Unexpected error:" + e.getMessage());
     }
 
+    }
+
+    private void validateFile (File file){
+        if (file == null){
+            throw new FileUploadException("Now file provided.");
+        }
+        if(!file.exists()){
+            throw new FileUploadException("File not found: " + file.getAbsolutePath());
+        }
+        if (file.isFile()) {
+            throw new FileUploadException("Not a valid file: " + file.getAbsolutePath());
+        }
+        if (!file.canRead()) {
+            throw new FileUploadException("File cannot be read: " + file.getAbsolutePath());
+        }
     }
 
     /**
