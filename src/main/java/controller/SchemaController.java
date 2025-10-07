@@ -25,22 +25,26 @@ public class SchemaController {
      */
     public void handleSchemaUpload(File schemaFile) {
         try {
-            String format = detectFormat(schemaFile);
-            SchemaParser parser = parserFactory.get(format);
-
-            SchemaObject schemaObject = parser.parse(schemaFile);
-
-            // update main.java.model
-            model.setSchema(schemaObject);
-
-            // notify main.java.view
-            view.showSuccess("Schema parsed successfully: " + schemaObject.getName());
-
-        } catch (SchemaParsingException e) {
-            view.showError("Parsing failed: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            view.showError("Invalid input: " + e.getMessage());
+            if (schemaFile == null || !schemaFile.exists() || !schemaFile.canRead()) {
+            throw new IllegalArgumentException("File is missing or cannot be read.");
         }
+        String format = detectFormat(schemaFile);
+        SchemaParser parser = parserFactory.get(format);
+
+        SchemaObject schemaObject = parser.parse(schemaFile);
+
+        model.setSchema(schemaObject);
+        view.showSuccess("Schema parsed successfully: " + schemaObject.getName());
+    
+    } catch(SchemaParsingException e){
+        view.showError("Parsing failed:" + e.getMessage());
+
+    } catch (IllegalArgumentException e){
+        view.showError("Invalid input:" + e.getMessage());
+    } catch (Exception e){
+        view.showError("Unexpected error:" + e.getMessage());
+    }
+
     }
 
     /**

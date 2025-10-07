@@ -1,5 +1,6 @@
 package main.java;
 
+import main.java.controller.SchemaController;
 import main.java.model.*;
 import main.java.view.SchemaView;
 
@@ -7,30 +8,27 @@ import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-        // Choose which type of schema to parse (hardcoded for testing in IntelliJ)
-        String type = "json"; // or "xml"
+        // MVC components
+        SchemaModel model = new SchemaModel();
+        SchemaView view = new SchemaView();
+        SchemaController controller = new SchemaController(model, view);
 
-        // Point to a file inside your project (adjust path if needed)
+        // Choose schema file
         File schemaFile = new File("src/main/resources/person.json");
-        // File schemaFile = new File("src/main/resources/person.xml");
-
-        try {
-            // Get the correct parser
-            SchemaParser parser = ParserFactory.get(type);
-
-            parser.logStart(schemaFile);
-
-            // Parse schema
-            SchemaObject schema = parser.parse(schemaFile);
-
-            // Show results
-            SchemaView view = new SchemaView();
+        //File schemaFile = new File("src/main/resources/person.xml");
 
 
-        } catch (SchemaParsingException e) {
-            System.err.println("Error parsing schema: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.err.println("Error: " + e.getMessage());
+        try{
+            // delegate  work to controller
+            controller.handleSchemaUpload(schemaFile);
+
+            //summary after parsing
+            if(model.getSchema() != null){
+                view.showParsedSummary(model.getSchema());
+            }
+        } catch (RuntimeException e){
+            System.err.println("Fatal error: " + e.getMessage());
         }
+
     }
 }
