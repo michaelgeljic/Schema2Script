@@ -16,18 +16,18 @@ package main.java.model;
 public class SchemaParsingException extends Exception {
 
     /**
-     * Creates a new {@code main.java.model.SchemaParsingException} with a specific error message.
+     * Creates a new {@code SchemaParsingException} with a descriptive error message.
      *
      * @param message A human-readable description of the error.
      */
     public SchemaParsingException(String message) {
-        super(message);
+        super("Schema Parsing Error: " + message);
     }
 
     /**
-     * Creates a new {@code main.java.model.SchemaParsingException} with a message and underlying cause.
+     * Creates a new {@code SchemaParsingException} with a message and underlying cause.
      * <p>
-     * This constructor is useful when another exception (like {@link java.io.IOException}
+     * Useful when another exception (like {@link java.io.IOException}
      * or a parsing library error) triggered the parsing failure.
      * </p>
      *
@@ -35,6 +35,6 @@ public class SchemaParsingException extends Exception {
      * @param cause   The original exception that caused this error (may be {@code null}).
      */
     public SchemaParsingException(String message, Throwable cause) {
-        super(message, cause);
+        super("Schema Parsing Error: " + message, cause);
     }
 }

@@ -1,7 +1,6 @@
 package main.java.controller;
 
 import main.java.model.*;
-
 import main.java.view.SchemaView;
 
 import java.io.File;
@@ -18,40 +17,43 @@ public class SchemaController {
     /**
      * Handles the upload of a schema file:
      *  - chooses parser by file extension
-     *  - updates main.java.model with parsed schema
-     *  - notifies main.java.view of success or error
+     *  - updates model with parsed schema
+     *  - notifies view of success or error
      */
     public void handleSchemaUpload(File schemaFile) {
         try {
             validateFile(schemaFile);
-        
-        String format = detectFormat(schemaFile);
-        SchemaParser parser = ParserFactory.get(format);
 
-        SchemaObject schemaObject = parser.parse(schemaFile);
+            String format = detectFormat(schemaFile);
+            SchemaParser parser = ParserFactory.get(format);
 
-        model.setSchema(schemaObject);
-        view.showSuccess("Schema parsed successfully: " + schemaObject.getName());
-    
-    } catch(SchemaParsingException e){
-        view.showError("Parsing failed:" + e.getMessage());
+            SchemaObject schemaObject = parser.parse(schemaFile);
 
-    } catch (IllegalArgumentException e){
-        view.showError("Invalid input:" + e.getMessage());
-    } catch (Exception e){
-        view.showError("Unexpected error:" + e.getMessage());
-    }
+            model.setSchema(schemaObject);
+            view.showSuccess("Schema parsed successfully: " + schemaObject.getName());
 
-    }
+        } catch (SchemaParsingException e) {
+            view.showError("Schema parsing failed: " + e.getMessage());
 
-    private void validateFile (File file){
-        if (file == null){
-            throw new FileUploadException("Now file provided.");
+        } catch (IllegalArgumentException e) {
+            view.showError("Invalid input: " + e.getMessage());
+
+        } catch (FileUploadException e) {
+            view.showError("File upload error: " + e.getMessage());
+
+        } catch (Exception e) {
+            view.showError("Unexpected error occurred. Details: " + e.getMessage());
         }
-        if(!file.exists()){
+    }
+
+    private void validateFile(File file) {
+        if (file == null) {
+            throw new FileUploadException("No file provided. Please select a schema file (.json or .xml).");
+        }
+        if (!file.exists()) {
             throw new FileUploadException("File not found: " + file.getAbsolutePath());
         }
-        if (file.isFile()) {
+        if (!file.isFile()) {
             throw new FileUploadException("Not a valid file: " + file.getAbsolutePath());
         }
         if (!file.canRead()) {
@@ -69,7 +71,9 @@ public class SchemaController {
         } else if (name.endsWith(".json")) {
             return "json";
         } else {
-            throw new IllegalArgumentException("Unsupported file extension for: " + name);
+            throw new IllegalArgumentException(
+                "Unsupported file type: " + name + ". Please upload a .json or .xml schema file."
+            );
         }
     }
 }
