@@ -20,18 +20,25 @@ public class JSONParser implements SchemaParser {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private static final Logger logger = LogManager.getLogger(JSONParser.class);
+
     @Override
     public SchemaObject parse(File schemaFile) throws SchemaParsingException {
         logger.info("Starting JSON schema parsing for file: {}", schemaFile.getAbsolutePath());
 
         if (!schemaFile.exists()) {
-            logger.error("JSON file not found: {}" + schemaFile.getAbsolutePath());
-            throw new SchemaParsingException("JSON file not found: " + schemaFile.getAbsolutePath());
+            logger.error("JSON file not found: {}", schemaFile.getAbsolutePath());
+            throw new SchemaParsingException(
+                "The file could not be found: " + schemaFile.getAbsolutePath() +
+                ". Please check the path and try again."
+            );
         }
 
         if (!schemaFile.getName().toLowerCase().endsWith(".json")) {
             logger.warn("Invalid file format detected: {}", schemaFile.getName());
-            throw new SchemaParsingException("Invalid file format. Expected a .json file.");
+            throw new SchemaParsingException(
+                "Invalid file format: " + schemaFile.getName() +
+                ". Please upload a valid JSON file with a .json extension."
+            );
         }
 
         try {
@@ -41,26 +48,32 @@ public class JSONParser implements SchemaParser {
 
             if (rootNode == null) {
                 logger.error("Root JSON node is null");
-                throw new SchemaParsingException("JSON schema root is null");
+                throw new SchemaParsingException(
+                    "The JSON file is empty or invalid. Please provide a valid JSON schema."
+                );
             }
 
-            // Validate basic structure: e.g., must have "name" and "fields"
+            // Validate required structure
             logger.debug("Validating required keys 'name' and 'fields'");
             if (!rootNode.has("name") || !rootNode.has("fields")) {
                 logger.error("JSON schema missing required 'name' or 'fields'");
-                throw new SchemaParsingException("JSON schema missing required 'name' or 'fields'.");
+                throw new SchemaParsingException(
+                    "Invalid JSON schema: missing required property 'name' or 'fields'. " +
+                    "Please ensure your schema includes both."
+                );
             }
 
             String name = rootNode.get("name").asText();
             logger.debug("Extracted schema name: {}", name);
 
-           
             JsonNode fieldsNode = rootNode.get("fields");
             if (!fieldsNode.isArray()) {
                 logger.warn("'fields' must be an array but was {}", fieldsNode.getNodeType());
-                throw new SchemaParsingException("'fields' must be an array.");
+                throw new SchemaParsingException(
+                    "Invalid JSON schema: 'fields' must be an array of field names."
+                );
             }
-            
+
             List<String> fields = new ArrayList<>();
             Iterator<JsonNode> it = fieldsNode.elements();
             int idx = 0;
@@ -76,7 +89,11 @@ public class JSONParser implements SchemaParser {
 
         } catch (IOException e) {
             logger.error("Error reading JSON file {}", schemaFile.getAbsolutePath(), e);
-            throw new SchemaParsingException("Error reading JSON file: " + e.getMessage(), e);
+            throw new SchemaParsingException(
+                "An error occurred while reading the JSON file: " + e.getMessage() +
+                ". Please ensure the file is valid JSON and try again.",
+                e
+            );
         }
     }
 }

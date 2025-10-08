@@ -4,7 +4,9 @@ import main.java.model.SchemaModel;
 import main.java.model.SchemaObject;
 import main.java.model.SchemaValidator;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SchemaValidatorTest {
@@ -27,7 +29,7 @@ class SchemaValidatorTest {
         model.setSchema(schema);
 
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
-        assertTrue(ex.getMessage().contains("Schema name is required"));
+        assertTrue(ex.getMessage().contains("schema name is missing or empty"));
     }
 
     @Test
@@ -37,7 +39,7 @@ class SchemaValidatorTest {
         model.setSchema(schema);
 
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
-        assertTrue(ex.getMessage().contains("At least one field is required"));
+        assertTrue(ex.getMessage().contains("must contain at least one field"));
     }
 
     @Test
@@ -46,9 +48,7 @@ class SchemaValidatorTest {
         SchemaModel model = new SchemaModel();
         model.setSchema(schema);
 
-        assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
+        assertTrue(ex.getMessage().contains("contains duplicate field"));
     }
-
-
-
 }
