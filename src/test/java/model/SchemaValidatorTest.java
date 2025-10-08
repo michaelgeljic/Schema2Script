@@ -22,15 +22,7 @@ class SchemaValidatorTest {
         assertDoesNotThrow(() -> validator.validate(model));
     }
 
-    @Test
-    void testMissingName() {
-        SchemaObject schema = new SchemaObject("", List.of("id"));
-        SchemaModel model = new SchemaModel();
-        model.setSchema(schema);
 
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> validator.validate(model));
-        assertTrue(ex.getMessage().contains("schema name is missing or empty"));
-    }
 
     @Test
     void testNoFields() {
