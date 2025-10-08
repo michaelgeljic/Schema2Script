@@ -21,16 +21,18 @@ public class SchemaApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         SchemaModel model = new SchemaModel();
-        controller = new SchemaController(model, new FxSchemaView());
-
-        // UI components
-        Button chooseFileBtn = new Button("Choose Schema File");
-        chooseFileBtn.setOnAction(e -> chooseSchemaFile(primaryStage));
 
         outputArea = new TextArea();
         outputArea.setEditable(false);
         outputArea.setPrefHeight(300);
         outputArea.setWrapText(true);
+
+        // pass the FxSchemaView implementation into the controller
+        controller = new SchemaController(model, new FxSchemaView());
+
+        // UI components
+        Button chooseFileBtn = new Button("Choose Schema File");
+        chooseFileBtn.setOnAction(e -> chooseSchemaFile(primaryStage));
 
         VBox root = new VBox(10, chooseFileBtn, outputArea);
         root.setStyle("-fx-padding: 15; -fx-background-color: #f9f9f9;");
@@ -46,7 +48,7 @@ public class SchemaApp extends Application {
         fileChooser.setTitle("Select Schema File");
         fileChooser.setInitialDirectory(new File("src/main/resources"));
         fileChooser.getExtensionFilters().add(
-            new FileChooser.ExtensionFilter("Schema Files (*.json, *.xml)", "*.json", "*.xml")
+                new FileChooser.ExtensionFilter("Schema Files (*.json, *.xml)", "*.json", "*.xml")
         );
 
         File selectedFile = fileChooser.showOpenDialog(stage);
@@ -61,7 +63,7 @@ public class SchemaApp extends Application {
     /**
      * JavaFX-based implementation of SchemaView
      */
-    private class FxSchemaView extends main.java.view.SchemaView {
+    private class FxSchemaView extends SchemaView {
         @Override
         public void showSuccess(String message) {
             outputArea.appendText("[SUCCESS] " + message + "\n");
@@ -78,14 +80,9 @@ public class SchemaApp extends Application {
                 showError("Parsed schema is empty.");
             } else {
                 try {
-                    // Generate SQL
                     MySQLGenerator generator = new MySQLGenerator();
                     String sql = generator.generateCreateTable(schema);
-
-                    // Output SQL first
                     outputArea.appendText(sql + "\n");
-
-                    // Then show parsed schema summary
                     showSuccess("Schema parsed and loaded successfully:\n" + schema);
                 } catch (Exception e) {
                     showError("Error generating SQL: " + e.getMessage());
