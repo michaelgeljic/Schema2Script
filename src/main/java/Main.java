@@ -2,7 +2,7 @@ package main.java;
 
 import main.java.controller.SchemaController;
 import main.java.model.*;
-import main.java.view.SchemaView;
+import main.java.view.SchemaApp;
 
 import java.io.File;
 
@@ -10,23 +10,25 @@ public class Main {
     public static void main(String[] args) {
         // MVC components
         SchemaModel model = new SchemaModel();
-        SchemaView view = new SchemaView();
+        SchemaApp view = new SchemaApp();
         SchemaController controller = new SchemaController(model, view);
 
         // Choose schema file
         File schemaFile = new File("src/main/resources/person.json");
-        //File schemaFile = new File("src/main/resources/person.xml");
+        // File schemaFile = new File("src/main/resources/person.xml");
 
-
-        try{
-            // delegate  work to controller
+        MySQLGenerator generator = new MySQLGenerator();
+        try {
+            // delegate work to controller
             controller.handleSchemaUpload(schemaFile);
+            SchemaObject schema = model.getSchema();
+            generator.generateCreateTable(schema);
 
-            //summary after parsing
-            if(model.getSchema() != null){
+            // summary after parsing
+            if (model.getSchema() != null) {
                 view.showParsedSummary(model.getSchema());
             }
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.err.println("Fatal error: " + e.getMessage());
         }
 

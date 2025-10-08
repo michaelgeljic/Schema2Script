@@ -1,15 +1,15 @@
 package main.java.controller;
 
 import main.java.model.*;
-import main.java.view.SchemaView;
+import main.java.view.SchemaApp;
 
 import java.io.File;
 
 public class SchemaController {
     private final SchemaModel model;
-    private final SchemaView view;
+    private final SchemaApp view;
 
-    public SchemaController(SchemaModel model, SchemaView view) {
+    public SchemaController(SchemaModel model, SchemaApp view) {
         this.model = model;
         this.view = view;
     }
@@ -30,7 +30,6 @@ public class SchemaController {
             SchemaObject schemaObject = parser.parse(schemaFile);
 
             model.setSchema(schemaObject);
-            view.showSuccess("Schema parsed successfully: " + schemaObject.getName());
 
         } catch (SchemaParsingException e) {
             view.showError("Schema parsing failed: " + e.getMessage());
