@@ -11,6 +11,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for {@link MySQLGenerator}.
+ */
 class MySQLGeneratorTest {
 
     private final ISqlGenerator generator = new MySQLGenerator();
@@ -20,6 +23,7 @@ class MySQLGeneratorTest {
     }
 
     private String norm(String sql) {
+        // Only normalize whitespace, keep backticks intact
         return sql.replaceAll("\\s+", " ").trim();
     }
 
@@ -29,7 +33,6 @@ class MySQLGeneratorTest {
         String sql = generator.generateCreateTable(s);
         String n = norm(sql);
 
-        
         assertTrue(n.startsWith("CREATE TABLE"), "Should start with CREATE TABLE");
         assertTrue(n.contains("`Person`"), "Table name should be backticked");
         assertTrue(n.contains("`id`"), "Field 'id' should be present and backticked");
@@ -44,9 +47,11 @@ class MySQLGeneratorTest {
     void quotesReservedWords() {
         SchemaObject s = schema("Order", "select", "from");
         String sql = generator.generateCreateTable(s);
-        assertTrue(sql.contains("`Order`"));
-        assertTrue(sql.contains("`select`"));
-        assertTrue(sql.contains("`from`"));
+        String n = norm(sql);
+
+        assertTrue(n.contains("`Order`"), "Reserved table name should be backticked");
+        assertTrue(n.contains("`select`"), "Reserved keyword 'select' should be backticked");
+        assertTrue(n.contains("`from`"), "Reserved keyword 'from' should be backticked");
     }
 
     @Test
@@ -68,7 +73,8 @@ class MySQLGeneratorTest {
 
     @Test
     void duplicateFieldsThrow() {
-        SchemaObject s = schema("Person", "name", "email", "name");
-        assertThrows(IllegalArgumentException.class, () -> generator.generateCreateTable(s));
+        SchemaObject s = schema("Person", "name", "email", "name"); // duplicate "name"
+        assertThrows(IllegalArgumentException.class,
+                () -> generator.generateCreateTable(s));
     }
 }
