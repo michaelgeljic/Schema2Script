@@ -17,11 +17,6 @@ public interface SchemaParser {
 
     /**
      * Parses the given schema file and produces a {@link SchemaObject}.
-     * <p>
-     * Implementations should validate the schema file format and
-     * throw a {@link SchemaParsingException} if the file is invalid,
-     * missing required fields, or cannot be read properly.
-     * </p>
      *
      * @param schemaFile the {@link File} representing the schema to parse
      * @return a {@link SchemaObject} created from the parsed schema
@@ -30,20 +25,36 @@ public interface SchemaParser {
      */
     SchemaObject parse(File schemaFile) throws SchemaParsingException;
 
-    default void logStart(File schemaFile){
-        logger.info("Starting schema parsing for file: {}", schemaFile.getAbsolutePath());
-
-    }
-
-    default void logSuccess(SchemaObject SchemaObject){
-        logger.debug("Parsed SchemaObject sucessfully: {}", SchemaObject);
-    }
-
-    default void logError(String message, Throwable t){
-        if (t!= null) {
-            logger.error(message, t);
+    /**
+     * Logs the start of schema parsing.
+     */
+    default void logStart(File schemaFile) {
+        if (schemaFile != null) {
+            logger.info("Starting schema parsing for file: {}", schemaFile.getAbsolutePath());
         } else {
-            logger.error(message);
+            logger.warn("Attempted to start parsing with a null file reference.");
+        }
+    }
+
+    /**
+     * Logs a successful schema parse.
+     */
+    default void logSuccess(SchemaObject schemaObject) {
+        if (schemaObject != null) {
+            logger.debug("Parsed SchemaObject successfully: {}", schemaObject);
+        } else {
+            logger.warn("Schema parsing reported success, but the SchemaObject was null.");
+        }
+    }
+
+    /**
+     * Logs an error that occurred during schema parsing.
+     */
+    default void logError(String message, Throwable t) {
+        if (t != null) {
+            logger.error("Schema parsing error: " + message, t);
+        } else {
+            logger.error("Schema parsing error: " + message);
         }
     }
 }

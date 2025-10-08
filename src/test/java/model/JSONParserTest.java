@@ -11,29 +11,30 @@ import java.io.FileWriter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class JSONParserTest {
     private final JSONParser parser = new JSONParser();
 
     @Test
     void testFileDoesNotExist() {
         File file = new File("does_not_exist.json");
-        assertThrows(SchemaParsingException.class,() -> parser.parse(file));
+        SchemaParsingException ex = assertThrows(SchemaParsingException.class, () -> parser.parse(file));
+        assertTrue(ex.getMessage().contains("file could not be found"));
     }
 
     @Test
     void testInvalidExtension() throws Exception {
-        File file = File.createTempFile("schhema", "txt");
-        try(FileWriter writer = new FileWriter(file)) {
+        File file = File.createTempFile("schema", ".txt");
+        try (FileWriter writer = new FileWriter(file)) {
             writer.write("{\"name\": \"Person\", \"fields\": [\"id\"]}");
         }
-        assertThrows(SchemaParsingException.class,() -> parser.parse(file));
+        SchemaParsingException ex = assertThrows(SchemaParsingException.class, () -> parser.parse(file));
+        assertTrue(ex.getMessage().contains("Invalid file format"));
     }
 
     @Test
     void testValidJsonSchema() throws Exception {
-        File file = File.createTempFile("schema",".json");
-        try(FileWriter writer = new FileWriter(file)) {
+        File file = File.createTempFile("schema", ".json");
+        try (FileWriter writer = new FileWriter(file)) {
             writer.write("{\"name\":\"Person\",\"fields\":[\"id\",\"firstName\"]}");
         }
 
@@ -41,7 +42,7 @@ public class JSONParserTest {
 
         assertNotNull(result);
         assertEquals("Person", result.getName());
-        assertEquals(2,result.getFields().size());
+        assertEquals(2, result.getFields().size());
     }
 
     @Test
@@ -52,7 +53,6 @@ public class JSONParserTest {
         }
 
         SchemaParsingException ex = assertThrows(SchemaParsingException.class, () -> parser.parse(tempFile));
-        assertTrue(ex.getMessage().contains("missing required 'name' or 'fields'"));
+        assertTrue(ex.getMessage().contains("missing required property 'name' or 'fields'"));
     }
-
 }
