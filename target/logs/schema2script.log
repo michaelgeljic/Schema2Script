@@ -375,3 +375,8 @@ CREATE TABLE `Order` (
 2025-10-08 21:46:14.726 INFO main.java.model.XmlParser:81 - Parsed schema name: Person
 2025-10-08 21:46:14.728 INFO main.java.model.XmlParser:82 - Parsed fields: [id, firstName, lastName, age]
 2025-10-08 21:46:14.732 INFO main.java.model.XmlParser:55 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema5294570256094437332.txt
+2025-10-13 09:53:08.046 INFO main.java.model.XmlParser:55 - Starting XML schema parsing for file: C:\Users\micky\Desktop\classes\appdevelopment\schema2script800g7\does_not_exist.xml
+2025-10-13 09:53:08.075 INFO main.java.model.XmlParser:55 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema5258235341836673115.xml
+2025-10-13 09:53:08.080 INFO main.java.model.XmlParser:81 - Parsed schema name: Person
+2025-10-13 09:53:08.081 INFO main.java.model.XmlParser:82 - Parsed fields: [id, firstName, lastName, age]
+2025-10-13 09:53:08.092 INFO main.java.model.XmlParser:55 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema14238161745255932129.txt
