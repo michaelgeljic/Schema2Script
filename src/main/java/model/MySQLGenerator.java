@@ -7,6 +7,8 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import main.java.exception.SqlGenerationException;
+
 /**
  * A generator that produces MySQL-compatible SQL statements
  * from a given {@link SchemaObject}.
@@ -99,11 +101,14 @@ public class MySQLGenerator implements ISqlGenerator {
             sb.append("\n);");
 
             logger.info("Successfully generated CREATE TABLE statement for schema: {}", schema.getName());
-            logger.debug("Generated SQL:\n{}", sb.toString());
+
+            if(logger.isDebugEnabled()){
+                logger.debug("Generated SQL:\n{}", sb);
+            }
 
         } catch (Exception e) {
             logger.error("Error while generating CREATE TABLE statement for schema: {}", schema.getName(), e);
-            throw new RuntimeException(
+            throw new SqlGenerationException(
                     "An unexpected error occurred while generating CREATE TABLE for schema '" + schema.getName() + "': " + e.getMessage(),
                     e
             );
