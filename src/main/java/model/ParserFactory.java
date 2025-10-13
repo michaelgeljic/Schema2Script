@@ -10,6 +10,10 @@ import org.apache.logging.log4j.Logger;
 public class ParserFactory {
     private static final Logger logger = LogManager.getLogger(ParserFactory.class);
 
+     private ParserFactory(){
+        throw new UnsupportedOperationException("Utility class- cannot be instantiated");
+    }
+
     public static SchemaParser get(String format) {
         if (format == null || format.trim().isEmpty()) {
             logger.error("Schema format is null or empty.");

@@ -375,3 +375,59 @@ CREATE TABLE `Order` (
 2025-10-08 21:46:14.726 INFO main.java.model.XmlParser:81 - Parsed schema name: Person
 2025-10-08 21:46:14.728 INFO main.java.model.XmlParser:82 - Parsed fields: [id, firstName, lastName, age]
 2025-10-08 21:46:14.732 INFO main.java.model.XmlParser:55 - Starting XML schema parsing for file: C:\Users\micky\AppData\Local\Temp\schema5294570256094437332.txt
+2025-10-13 09:51:57.781 INFO main.java.model.ParserFactory:21 - Schema format requested: json
+2025-10-13 09:51:57.908 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\lukab\schema2script800g7-2\src\main\resources\person.json
+2025-10-13 09:51:57.909 DEBUG main.java.model.JSONParser:41 - Reading JSON tree from person.json
+2025-10-13 09:51:57.929 DEBUG main.java.model.JSONParser:68 - Extracted schema name: Person
+2025-10-13 09:51:57.944 INFO main.java.model.JSONParser:88 - Parsed SchemaObject created: Person
+2025-10-13 09:51:57.979 INFO main.java.model.MySQLGenerator:78 - Starting CREATE TABLE generation for schema: Person
+2025-10-13 09:51:57.980 DEBUG main.java.model.MySQLGenerator:79 - Schema 'Person' has 4 fields: [id, firstName, lastName, age]
+2025-10-13 09:51:57.981 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: id
+2025-10-13 09:51:57.981 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: firstName
+2025-10-13 09:51:57.982 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: lastName
+2025-10-13 09:51:57.982 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: age
+2025-10-13 09:51:57.982 INFO main.java.model.MySQLGenerator:101 - Successfully generated CREATE TABLE statement for schema: Person
+2025-10-13 09:51:57.983 DEBUG main.java.model.MySQLGenerator:102 - Generated SQL:
+CREATE TABLE `Person` (
+    `id` VARCHAR(255),
+    `firstName` VARCHAR(255),
+    `lastName` VARCHAR(255),
+    `age` VARCHAR(255)
+);
+2025-10-13 10:04:29.193 INFO main.java.model.ParserFactory:25 - Schema format requested: json
+2025-10-13 10:04:29.323 INFO main.java.model.JSONParser:25 - Starting JSON schema parsing for file: C:\Users\lukab\schema2script800g7-2\src\main\resources\person.json
+2025-10-13 10:04:29.324 DEBUG main.java.model.JSONParser:41 - Reading JSON tree from person.json
+2025-10-13 10:04:29.348 DEBUG main.java.model.JSONParser:68 - Extracted schema name: Person
+2025-10-13 10:04:29.350 INFO main.java.model.JSONParser:88 - Parsed SchemaObject created: Person
+2025-10-13 10:04:29.371 INFO main.java.model.MySQLGenerator:78 - Starting CREATE TABLE generation for schema: Person
+2025-10-13 10:04:29.372 DEBUG main.java.model.MySQLGenerator:79 - Schema 'Person' has 4 fields: [id, firstName, lastName, age]
+2025-10-13 10:04:29.372 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: id
+2025-10-13 10:04:29.373 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: firstName
+2025-10-13 10:04:29.373 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: lastName
+2025-10-13 10:04:29.374 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: age
+2025-10-13 10:04:29.374 INFO main.java.model.MySQLGenerator:101 - Successfully generated CREATE TABLE statement for schema: Person
+2025-10-13 10:04:29.374 DEBUG main.java.model.MySQLGenerator:102 - Generated SQL:
+CREATE TABLE `Person` (
+    `id` VARCHAR(255),
+    `firstName` VARCHAR(255),
+    `lastName` VARCHAR(255),
+    `age` VARCHAR(255)
+);
+2025-10-13 10:05:58.694 INFO main.java.model.ParserFactory:25 - Schema format requested: xml
+2025-10-13 10:05:58.697 INFO main.java.model.XmlParser:55 - Starting XML schema parsing for file: C:\Users\lukab\schema2script800g7-2\src\main\resources\person.xml
+2025-10-13 10:05:58.700 INFO main.java.model.XmlParser:81 - Parsed schema name: Person
+2025-10-13 10:05:58.701 INFO main.java.model.XmlParser:82 - Parsed fields: [id, firstName, lastName, age]
+2025-10-13 10:05:58.702 INFO main.java.model.MySQLGenerator:78 - Starting CREATE TABLE generation for schema: Person
+2025-10-13 10:05:58.703 DEBUG main.java.model.MySQLGenerator:79 - Schema 'Person' has 4 fields: [id, firstName, lastName, age]
+2025-10-13 10:05:58.704 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: id
+2025-10-13 10:05:58.704 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: firstName
+2025-10-13 10:05:58.704 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: lastName
+2025-10-13 10:05:58.705 DEBUG main.java.model.MySQLGenerator:89 - Adding field to CREATE TABLE statement: age
+2025-10-13 10:05:58.705 INFO main.java.model.MySQLGenerator:101 - Successfully generated CREATE TABLE statement for schema: Person
+2025-10-13 10:05:58.705 DEBUG main.java.model.MySQLGenerator:102 - Generated SQL:
+CREATE TABLE `Person` (
+    `id` VARCHAR(255),
+    `firstName` VARCHAR(255),
+    `lastName` VARCHAR(255),
+    `age` VARCHAR(255)
+);
