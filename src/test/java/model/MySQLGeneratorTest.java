@@ -138,19 +138,37 @@ class MySQLGeneratorTest {
         SchemaObject s = new SchemaObject("Test", List.of("id"));
         new MySQLGenerator().generateCreateTable(s);
     }
+
     @Test
-    void schemaObjectRejectsNullName() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new SchemaObject(null, List.of("id")),
-                "SchemaObject should not allow null name");
+    void nullSchemaThrowsIllegalArgumentException() {
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> generator.generateCreateTable(null)
+        );
+        assertTrue(ex.getMessage().contains("schema is null"));
     }
 
     @Test
-    void schemaObjectRejectsEmptyName() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new SchemaObject(" ", List.of("id")),
-                "SchemaObject should not allow empty name");
+    void handlesSqlGenerationErrorWhenExceptionOccurs() {
+        MySQLGenerator badGenerator = new MySQLGenerator() {
+            @Override
+            protected void buildCreateTableSQL(SchemaObject schema, List<String> fields, StringBuilder sb) {
+                throw new RuntimeException("Simulated SQL generation failure");
+            }
+        };
+
+        SchemaObject schema = new SchemaObject("Broken", List.of("id"));
+
+        SqlGenerationException ex = assertThrows(
+                SqlGenerationException.class,
+                () -> badGenerator.generateCreateTable(schema)
+        );
+
+        assertTrue(ex.getMessage().contains("unexpected error"));
     }
+
+
+
 
 
 

@@ -133,7 +133,7 @@ public class MySQLGenerator implements ISqlGenerator {
      * @param fields the list of validated field names
      * @param sb a {@link StringBuilder} used to accumulate the SQL statement
      */
-    private void buildCreateTableSQL(SchemaObject schema, List<String> fields, StringBuilder sb) {
+    protected void buildCreateTableSQL(SchemaObject schema, List<String> fields, StringBuilder sb) {
         sb.append("CREATE TABLE `").append(schema.getName()).append("` (\n");
 
         for (int i = 0; i < fields.size(); i++) {
