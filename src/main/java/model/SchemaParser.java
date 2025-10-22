@@ -54,7 +54,7 @@ public interface SchemaParser {
      */
     default void logError(String message, Throwable t) {
         if (t != null) {
-            logger.error("Schema parsing error: " + message, t);
+            logger.error("Schema parsing error: {}", message, t);
         } else {
             logger.error("Schema parsing error: " + message);
         }
