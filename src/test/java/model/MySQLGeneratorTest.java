@@ -134,10 +134,23 @@ class MySQLGeneratorTest {
 
     @Test
     void debugLoggingPathIsCovered() {
-        System.setProperty("org.apache.logging.log4j.simplelog.StatusLogger.level", "DEBUG");
-        SchemaObject s = new SchemaObject("Test", List.of("id"));
-        new MySQLGenerator().generateCreateTable(s);
+        // Enable debug logging for this class
+        org.apache.logging.log4j.core.config.Configurator.setLevel(
+                "model.MySQLGenerator", org.apache.logging.log4j.Level.DEBUG
+        );
+
+        SchemaObject schema = new SchemaObject("Test", List.of("id"));
+        MySQLGenerator generator = new MySQLGenerator();
+
+        // Act
+        String sql = generator.generateCreateTable(schema);
+
+        // Assert: SQL should be a valid CREATE TABLE statement
+        assertNotNull(sql);
+        assertTrue(sql.contains("CREATE TABLE `Test`"));
+        assertTrue(sql.contains("`id` VARCHAR(255)"));
     }
+
 
     @Test
     void nullSchemaThrowsIllegalArgumentException() {
