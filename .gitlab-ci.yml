@@ -27,7 +27,7 @@ sonar:
       - "${SONAR_USER_HOME}/cache"
       - sonar-scanner/
   script:
-    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
   allow_failure: true
   rules:
