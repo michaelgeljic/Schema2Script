@@ -139,22 +139,20 @@ class MySQLGeneratorTest {
         new MySQLGenerator().generateCreateTable(s);
     }
     @Test
-    void nullSchemaNameThrows() {
-        SchemaObject schema = new SchemaObject(null, List.of("id"));
-        IllegalArgumentException ex = assertThrows(
-                IllegalArgumentException.class,
-                () -> generator.generateCreateTable(schema)
-        );
-        assertTrue(ex.getMessage().contains("schema name"));
+    void schemaObjectRejectsNullName() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new SchemaObject(null, List.of("id")),
+                "SchemaObject should not allow null name");
     }
+
     @Test
-    void handlesUnexpectedExceptionGracefully() {
-        SchemaObject bad = new SchemaObject("Broken", null); // null field list triggers exception
-        SqlGenerationException ex = assertThrows(
-                SqlGenerationException.class,
-                () -> generator.generateCreateTable(bad)
-        );
-        assertTrue(ex.getMessage().contains("An unexpected error occurred"));
+    void schemaObjectRejectsEmptyName() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new SchemaObject(" ", List.of("id")),
+                "SchemaObject should not allow empty name");
     }
+
+
+
 
 }
