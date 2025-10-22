@@ -1,8 +1,7 @@
-package test.java.model;
+package model;
 
-import main.java.model.SchemaObject;
-import main.java.model.SchemaParsingException;
-import main.java.model.XmlParser;
+
+import exception.SchemaParsingException;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

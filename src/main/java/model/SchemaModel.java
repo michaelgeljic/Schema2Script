@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 /**
  * Holds the current {@link SchemaObject} being worked with in the application.

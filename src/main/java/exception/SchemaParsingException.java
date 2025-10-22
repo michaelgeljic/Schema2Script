@@ -1,4 +1,4 @@
-package main.java.model;
+package exception;
 
 /**
  * Custom exception for handling errors during schema parsing.

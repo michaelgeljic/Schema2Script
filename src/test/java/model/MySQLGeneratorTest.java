@@ -1,14 +1,9 @@
-package test.java.model;
+package model;
 
+import exception.SqlGenerationException;
 import org.junit.jupiter.api.Test;
-
-import main.java.model.ISqlGenerator;
-import main.java.model.MySQLGenerator;
-import main.java.model.SchemaObject;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -77,4 +72,105 @@ class MySQLGeneratorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> generator.generateCreateTable(s));
     }
+
+    @Test
+    void fieldNameNullThrows() {
+        SchemaObject s = schema("Person", "id", null);
+        assertThrows(IllegalArgumentException.class,
+                () -> generator.generateCreateTable(s));
+    }
+
+    @Test
+    void fieldNameEmptyThrows() {
+        SchemaObject s = schema("Person", "id", "  ");
+        assertThrows(IllegalArgumentException.class,
+                () -> generator.generateCreateTable(s));
+    }
+
+    @Test
+    void mapDataTypeRecognizedTypes() {
+        assertEquals("INT", generator.mapDataType("int"));
+        assertEquals("VARCHAR(255)", generator.mapDataType("string"));
+        assertEquals("BOOLEAN", generator.mapDataType("bool"));
+    }
+
+    @Test
+    void mapDataTypeUnknownDefaultsToText() {
+        assertEquals("TEXT", generator.mapDataType("float"));
+        assertEquals("TEXT", generator.mapDataType("randomtype"));
+    }
+
+    @Test
+    void mapDataTypeNullThrows() {
+        assertThrows(IllegalArgumentException.class, () -> generator.mapDataType(null));
+    }
+
+    @Test
+    void mapDataTypeEmptyThrows() {
+        assertThrows(IllegalArgumentException.class, () -> generator.mapDataType(" "));
+    }
+
+    @Test
+    void generateConstraintsReturnsEmptyString() {
+        SchemaObject s = schema("AnyTable", "id");
+        String constraints = generator.generateConstraints(s);
+        assertNotNull(constraints, "Should not return null");
+        assertEquals("", constraints.trim(), "Should return empty string for now");
+    }
+
+
+    @Test
+    void generateCreateTableHandlesException() {
+        // Create a subclass that throws an exception during SQL generation
+        ISqlGenerator faultyGenerator = new MySQLGenerator() {
+            @Override
+            public String generateCreateTable(SchemaObject schema) {
+                throw new RuntimeException("boom");
+            }
+        };
+        SchemaObject schema = new SchemaObject("Bad", List.of("id"));
+        assertThrows(RuntimeException.class, () -> faultyGenerator.generateCreateTable(schema));
+    }
+
+    @Test
+    void debugLoggingPathIsCovered() {
+        System.setProperty("org.apache.logging.log4j.simplelog.StatusLogger.level", "DEBUG");
+        SchemaObject s = new SchemaObject("Test", List.of("id"));
+        new MySQLGenerator().generateCreateTable(s);
+    }
+
+    @Test
+    void nullSchemaThrowsIllegalArgumentException() {
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> generator.generateCreateTable(null)
+        );
+        assertTrue(ex.getMessage().contains("schema is null"));
+    }
+
+    @Test
+    void handlesSqlGenerationErrorWhenExceptionOccurs() {
+        MySQLGenerator badGenerator = new MySQLGenerator() {
+            @Override
+            protected void buildCreateTableSQL(SchemaObject schema, List<String> fields, StringBuilder sb) {
+                throw new RuntimeException("Simulated SQL generation failure");
+            }
+        };
+
+        SchemaObject schema = new SchemaObject("Broken", List.of("id"));
+
+        SqlGenerationException ex = assertThrows(
+                SqlGenerationException.class,
+                () -> badGenerator.generateCreateTable(schema)
+        );
+
+        assertTrue(ex.getMessage().contains("unexpected error"));
+    }
+
+
+
+
+
+
+
 }

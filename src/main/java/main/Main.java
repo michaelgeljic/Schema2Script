@@ -1,6 +1,6 @@
-package main.java;
+package main;
 
-import main.java.view.SchemaApp;
+import view.SchemaApp;
 
 public class Main {
     public static void main(String[] args) {
