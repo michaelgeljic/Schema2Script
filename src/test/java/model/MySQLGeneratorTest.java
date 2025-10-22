@@ -1,10 +1,6 @@
-package test.java.model;
+package model;
 
 import org.junit.jupiter.api.Test;
-
-import main.java.model.ISqlGenerator;
-import main.java.model.MySQLGenerator;
-import main.java.model.SchemaObject;
 
 import java.util.Arrays;
 import java.util.List;

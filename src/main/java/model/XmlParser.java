@@ -1,5 +1,6 @@
-package main.java.model;
+package model;
 
+import exception.SchemaParsingException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.*;

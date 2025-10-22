@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 /**
  * Defines the contract for SQL generators that convert {@link SchemaObject}
