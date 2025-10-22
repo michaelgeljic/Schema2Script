@@ -59,7 +59,7 @@ import exception.SqlGenerationException;
 <span class="nc" id="L59">                logger.debug(&quot;Generated SQL:\n{}&quot;, sb);</span>
             }
 
-<span class="nc" id="L62">        } catch (Exception e) {</span>
+<span class="fc" id="L62">        } catch (Exception e) {</span>
 <span class="nc" id="L63">            handleSqlGenerationError(schema, e);</span>
 <span class="fc" id="L64">        }</span>
 
@@ -133,7 +133,7 @@ import exception.SqlGenerationException;
      * @param fields the list of validated field names
      * @param sb a {@link StringBuilder} used to accumulate the SQL statement
      */
-    private void buildCreateTableSQL(SchemaObject schema, List&lt;String&gt; fields, StringBuilder sb) {
+    protected void buildCreateTableSQL(SchemaObject schema, List&lt;String&gt; fields, StringBuilder sb) {
 <span class="fc" id="L137">        sb.append(&quot;CREATE TABLE `&quot;).append(schema.getName()).append(&quot;` (\n&quot;);</span>
 
 <span class="fc bfc" id="L139" title="All 2 branches covered.">        for (int i = 0; i &lt; fields.size(); i++) {</span>
@@ -160,10 +160,10 @@ import exception.SqlGenerationException;
      * @throws SqlGenerationException a wrapped exception with contextual information
      */
     private void handleSqlGenerationError(SchemaObject schema, Exception e) {
-<span class="nc" id="L163">        logger.error(&quot;Error while generating CREATE TABLE statement for schema: {}&quot;, schema.getName(), e);</span>
-<span class="nc" id="L164">        throw new SqlGenerationException(</span>
+<span class="fc" id="L163">        logger.error(&quot;Error while generating CREATE TABLE statement for schema: {}&quot;, schema.getName(), e);</span>
+<span class="fc" id="L164">        throw new SqlGenerationException(</span>
                 &quot;An unexpected error occurred while generating CREATE TABLE for schema '&quot;
-<span class="nc" id="L166">                        + schema.getName() + &quot;': &quot; + e.getMessage(),</span>
+<span class="fc" id="L166">                        + schema.getName() + &quot;': &quot; + e.getMessage(),</span>
                 e
         );
     }
