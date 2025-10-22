@@ -1,8 +1,6 @@
-package test.java.model;
+package model;
 
-import main.java.model.SchemaModel;
-import main.java.model.SchemaObject;
-import main.java.model.SchemaValidator;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

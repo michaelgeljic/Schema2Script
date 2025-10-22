@@ -1,17 +1,16 @@
-package test.java.model;
+package model;
 
+import exception.SchemaParsingException;
 import org.junit.jupiter.api.Test;
 
-import main.java.model.JSONParser;
-import main.java.model.SchemaObject;
-import main.java.model.SchemaParsingException;
+
 
 import java.io.File;
 import java.io.FileWriter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class JSONParserTest {
+class JSONParserTest {
     private final JSONParser parser = new JSONParser();
 
     @Test
