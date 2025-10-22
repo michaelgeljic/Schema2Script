@@ -56,7 +56,7 @@ public interface SchemaParser {
         if (t != null) {
             logger.error("Schema parsing error: {}", message, t);
         } else {
-            logger.error("Schema parsing error: " + message);
+            logger.error("Schema parsing error: {}" , message);
         }
     }
 }
