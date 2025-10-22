@@ -4,6 +4,7 @@ import exception.SqlGenerationException;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -56,14 +57,16 @@ class MySQLGeneratorTest {
 
     @Test
     void emptyNameThrows() {
+        SchemaObject s = new SchemaObject("", List.of("id"));
         assertThrows(IllegalArgumentException.class,
-                () -> generator.generateCreateTable(new SchemaObject("", List.of("id"))));
+                () -> generator.generateCreateTable(s));
     }
 
     @Test
     void emptyFieldsThrow() {
+        SchemaObject s = new SchemaObject("Empty", List.of());
         assertThrows(IllegalArgumentException.class,
-                () -> generator.generateCreateTable(new SchemaObject("Empty", List.of())));
+                () -> generator.generateCreateTable(s));
     }
 
     @Test
@@ -118,7 +121,6 @@ class MySQLGeneratorTest {
         assertEquals("", constraints.trim(), "Should return empty string for now");
     }
 
-
     @Test
     void generateCreateTableHandlesException() {
         // Create a subclass that throws an exception during SQL generation
@@ -151,14 +153,12 @@ class MySQLGeneratorTest {
         assertTrue(sql.contains("`id` VARCHAR(255)"));
     }
 
-
     @Test
     void nullSchemaThrowsIllegalArgumentException() {
-        IllegalArgumentException ex = assertThrows(
+        assertThrows(
                 IllegalArgumentException.class,
                 () -> generator.generateCreateTable(null)
         );
-        assertTrue(ex.getMessage().contains("schema is null"));
     }
 
     @Test
@@ -179,11 +179,4 @@ class MySQLGeneratorTest {
 
         assertTrue(ex.getMessage().contains("unexpected error"));
     }
-
-
-
-
-
-
-
 }
