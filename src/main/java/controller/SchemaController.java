@@ -1,7 +1,8 @@
-package main.java.controller;
+package controller;
 
-import main.java.model.*;
-import main.java.view.SchemaView;
+import model.*;
+import view.SchemaView;
+import exception.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

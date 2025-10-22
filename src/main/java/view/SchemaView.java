@@ -1,6 +1,6 @@
-package main.java.view;
+package view;
 
-import main.java.model.SchemaObject;
+import model.SchemaObject;
 
 public abstract class SchemaView {
     public abstract void showSuccess(String message);

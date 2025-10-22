@@ -1,4 +1,4 @@
-package main.java.view;
+package view;
 
 import javafx.application.Application;
 import javafx.stage.FileChooser;
@@ -6,10 +6,10 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import main.java.controller.SchemaController;
-import main.java.model.SchemaModel;
-import main.java.model.SchemaObject;
-import main.java.model.MySQLGenerator;
+import controller.SchemaController;
+import model.SchemaModel;
+import model.SchemaObject;
+import model.MySQLGenerator;
 
 import java.io.File;
 
