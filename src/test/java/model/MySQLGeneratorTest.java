@@ -1,10 +1,8 @@
 package model;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -73,4 +71,50 @@ class MySQLGeneratorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> generator.generateCreateTable(s));
     }
+
+    @Test
+    void fieldNameNullThrows() {
+        SchemaObject s = schema("Person", "id", null);
+        assertThrows(IllegalArgumentException.class,
+                () -> generator.generateCreateTable(s));
+    }
+
+    @Test
+    void fieldNameEmptyThrows() {
+        SchemaObject s = schema("Person", "id", "  ");
+        assertThrows(IllegalArgumentException.class,
+                () -> generator.generateCreateTable(s));
+    }
+
+    @Test
+    void mapDataTypeRecognizedTypes() {
+        assertEquals("INT", generator.mapDataType("int"));
+        assertEquals("VARCHAR(255)", generator.mapDataType("string"));
+        assertEquals("BOOLEAN", generator.mapDataType("bool"));
+    }
+
+    @Test
+    void mapDataTypeUnknownDefaultsToText() {
+        assertEquals("TEXT", generator.mapDataType("float"));
+        assertEquals("TEXT", generator.mapDataType("randomtype"));
+    }
+
+    @Test
+    void mapDataTypeNullThrows() {
+        assertThrows(IllegalArgumentException.class, () -> generator.mapDataType(null));
+    }
+
+    @Test
+    void mapDataTypeEmptyThrows() {
+        assertThrows(IllegalArgumentException.class, () -> generator.mapDataType(" "));
+    }
+
+    @Test
+    void generateConstraintsReturnsEmptyString() {
+        SchemaObject s = schema("AnyTable", "id");
+        String constraints = generator.generateConstraints(s);
+        assertNotNull(constraints, "Should not return null");
+        assertEquals("", constraints.trim(), "Should return empty string for now");
+    }
+
 }
