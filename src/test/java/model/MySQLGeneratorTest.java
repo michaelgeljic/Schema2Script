@@ -140,10 +140,10 @@ class MySQLGeneratorTest {
         );
 
         SchemaObject schema = new SchemaObject("Test", List.of("id"));
-        MySQLGenerator generator = new MySQLGenerator();
+        MySQLGenerator mySQLGen = new MySQLGenerator();
 
         // Act
-        String sql = generator.generateCreateTable(schema);
+        String sql = mySQLGen.generateCreateTable(schema);
 
         // Assert: SQL should be a valid CREATE TABLE statement
         assertNotNull(sql);
