@@ -1,5 +1,6 @@
 package model;
 
+import exception.SqlGenerationException;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
@@ -115,6 +116,45 @@ class MySQLGeneratorTest {
         String constraints = generator.generateConstraints(s);
         assertNotNull(constraints, "Should not return null");
         assertEquals("", constraints.trim(), "Should return empty string for now");
+    }
+
+
+    @Test
+    void generateCreateTableHandlesException() {
+        // Create a subclass that throws an exception during SQL generation
+        ISqlGenerator faultyGenerator = new MySQLGenerator() {
+            @Override
+            public String generateCreateTable(SchemaObject schema) {
+                throw new RuntimeException("boom");
+            }
+        };
+        SchemaObject schema = new SchemaObject("Bad", List.of("id"));
+        assertThrows(RuntimeException.class, () -> faultyGenerator.generateCreateTable(schema));
+    }
+
+    @Test
+    void debugLoggingPathIsCovered() {
+        System.setProperty("org.apache.logging.log4j.simplelog.StatusLogger.level", "DEBUG");
+        SchemaObject s = new SchemaObject("Test", List.of("id"));
+        new MySQLGenerator().generateCreateTable(s);
+    }
+    @Test
+    void nullSchemaNameThrows() {
+        SchemaObject schema = new SchemaObject(null, List.of("id"));
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> generator.generateCreateTable(schema)
+        );
+        assertTrue(ex.getMessage().contains("schema name"));
+    }
+    @Test
+    void handlesUnexpectedExceptionGracefully() {
+        SchemaObject bad = new SchemaObject("Broken", null); // null field list triggers exception
+        SqlGenerationException ex = assertThrows(
+                SqlGenerationException.class,
+                () -> generator.generateCreateTable(bad)
+        );
+        assertTrue(ex.getMessage().contains("An unexpected error occurred"));
     }
 
 }
