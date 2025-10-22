@@ -55,8 +55,8 @@ import exception.SqlGenerationException;
 <span class="fc" id="L55">            buildCreateTableSQL(schema, fields, sb);</span>
 
 <span class="fc" id="L57">            logger.info(&quot;Successfully generated CREATE TABLE statement for schema: {}&quot;, schema.getName());</span>
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">            if (logger.isDebugEnabled()) {</span>
-<span class="nc" id="L59">                logger.debug(&quot;Generated SQL:\n{}&quot;, sb);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            if (logger.isDebugEnabled()) {</span>
+<span class="fc" id="L59">                logger.debug(&quot;Generated SQL:\n{}&quot;, sb);</span>
             }
 
 <span class="fc" id="L62">        } catch (Exception e) {</span>
