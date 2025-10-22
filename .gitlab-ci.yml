@@ -20,7 +20,6 @@ build:
 
 sonar:
   stage: sonar
-  image: maven:3.9.9-eclipse-temurin-21
   cache:
     policy: pull-push
     key: "sonar-cache-$CI_COMMIT_REF_SLUG"
