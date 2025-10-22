@@ -9,7 +9,6 @@ stages:
   - package
   - sonar
 
-# --- Build job ---
 build:
   stage: build
   image: maven:3.9.9-eclipse-temurin-21
@@ -19,7 +18,25 @@ build:
     paths:
       - target/classes/
 
-# --- Package job ---
+sonar:
+  stage: sonar
+  cache:
+    policy: pull-push
+    key: "sonar-cache-$CI_COMMIT_REF_SLUG"
+    paths:
+      - "${SONAR_USER_HOME}/cache"
+      - sonar-scanner/
+  script:
+    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+  allow_failure: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH == "develop"
+
+
 package:
   stage: package
   image: maven:3.9.9-eclipse-temurin-21
@@ -29,25 +46,3 @@ package:
     paths:
       - dist/schema2script.jar
 
-# --- SonarQube analysis job ---
-sonar:
-  stage: sonar
-  image: maven:3.9.9-eclipse-temurin-21
-  cache:
-    policy: pull-push
-    key: "sonar-cache-$CI_COMMIT_REF_SLUG"
-    paths:
-      - "${SONAR_USER_HOME}/cache"
-      - sonar-scanner/
-  script:
-    - mvn verify org.sonarsource.scanner.maven:sonar \
-        -Dsonar.projectKey=rit-croatia_iste-422_schema2script800g7_17fb4abf-0161-43f8-addf-a2dde3354a60 \
-        -Dsonar.organization=rit-croatia \
-        -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.login=$SONAR_TOKEN
-  allow_failure: true
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH == "master"
-    - if: $CI_COMMIT_BRANCH == "main"
-    - if: $CI_COMMIT_BRANCH == "develop"
