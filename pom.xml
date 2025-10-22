@@ -15,7 +15,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sonar.projectKey>rit-croatia_iste-422_schema2script800g7_17fb4abf-0161-43f8-addf-a2dde3354a60</sonar.projectKey>
+        <sonar.projectKey>rit-croatia_iste-422_schema2script800g7_e7d5adcc-3c99-4b00-8eea-e521f086bb75</sonar.projectKey>
         <sonar.projectName>Schema2Script800G7</sonar.projectName>
         <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 
