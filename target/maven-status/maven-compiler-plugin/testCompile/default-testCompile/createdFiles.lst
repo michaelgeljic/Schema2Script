@@ -1,0 +1,4 @@
+model\XmlParserTest.class
+model\MySQLGeneratorTest.class
+model\SchemaValidatorTest.class
+model\JSONParserTest.class

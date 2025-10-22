@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SchemaParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Schema2Script</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">SchemaParser.java</span></div><h1>SchemaParser.java</h1><pre class="source lang-java linenums">package model;
+
+import java.io.File;
+
+import exception.SchemaParsingException;
+import org.apache.logging.log4j.*;
+
+/**
+ * Defines the contract for schema parsers that convert schema files
+ * (e.g., JSON, XML) into {@link SchemaObject} instances.
+ * &lt;p&gt;
+ * Each implementation of this interface should provide its own logic
+ * for reading and validating a schema file in a specific format.
+ * &lt;/p&gt;
+ */
+public interface SchemaParser {
+
+<span class="fc" id="L18">    Logger logger = LogManager.getLogger(SchemaParser.class);</span>
+
+    /**
+     * Parses the given schema file and produces a {@link SchemaObject}.
+     *
+     * @param schemaFile the {@link File} representing the schema to parse
+     * @return a {@link SchemaObject} created from the parsed schema
+     * @throws SchemaParsingException if parsing fails due to invalid format,
+     *                                missing fields, or unexpected errors
+     */
+    SchemaObject parse(File schemaFile) throws SchemaParsingException;
+
+    /**
+     * Logs the start of schema parsing.
+     */
+    default void logStart(File schemaFile) {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (schemaFile != null) {</span>
+<span class="nc" id="L35">            logger.info(&quot;Starting schema parsing for file: {}&quot;, schemaFile.getAbsolutePath());</span>
+        } else {
+<span class="nc" id="L37">            logger.warn(&quot;Attempted to start parsing with a null file reference.&quot;);</span>
+        }
+<span class="nc" id="L39">    }</span>
+
+    /**
+     * Logs a successful schema parse.
+     */
+    default void logSuccess(SchemaObject schemaObject) {
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (schemaObject != null) {</span>
+<span class="nc" id="L46">            logger.debug(&quot;Parsed SchemaObject successfully: {}&quot;, schemaObject);</span>
+        } else {
+<span class="nc" id="L48">            logger.warn(&quot;Schema parsing reported success, but the SchemaObject was null.&quot;);</span>
+        }
+<span class="nc" id="L50">    }</span>
+
+    /**
+     * Logs an error that occurred during schema parsing.
+     */
+    default void logError(String message, Throwable t) {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (t != null) {</span>
+<span class="nc" id="L57">            logger.error(&quot;Schema parsing error: &quot; + message, t);</span>
+        } else {
+<span class="nc" id="L59">            logger.error(&quot;Schema parsing error: &quot; + message);</span>
+        }
+<span class="nc" id="L61">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

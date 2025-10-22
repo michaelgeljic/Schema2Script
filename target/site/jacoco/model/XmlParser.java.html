@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>XmlParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Schema2Script</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">XmlParser.java</span></div><h1>XmlParser.java</h1><pre class="source lang-java linenums">package model;
+
+import exception.SchemaParsingException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.w3c.dom.*;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * A parser that reads XML schema files and converts them into {@link SchemaObject} instances.
+ * &lt;p&gt;
+ * The parser expects XML files to follow the structure:
+ * &lt;/p&gt;
+ *
+ * &lt;pre&gt;{@code
+ * &lt;schema name=&quot;Person&quot;&gt;
+ *     &lt;fields&gt;
+ *         &lt;field&gt;id&lt;/field&gt;
+ *         &lt;field&gt;firstName&lt;/field&gt;
+ *         &lt;field&gt;lastName&lt;/field&gt;
+ *         &lt;field&gt;age&lt;/field&gt;
+ *     &lt;/fields&gt;
+ * &lt;/schema&gt;
+ * }&lt;/pre&gt;
+ *
+ * &lt;p&gt;
+ * From this example, the parser would produce a {@link SchemaObject}
+ * with the name {@code &quot;Person&quot;} and fields {@code [&quot;id&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;age&quot;]}.
+ * &lt;/p&gt;
+ *
+ * &lt;p&gt;
+ * Validation is performed on the file path and extension.
+ * Detailed logging is provided for troubleshooting and debugging.
+ * &lt;/p&gt;
+ */
+<span class="fc" id="L42">public class XmlParser implements SchemaParser {</span>
+
+<span class="fc" id="L44">    private static final Logger logger = LogManager.getLogger(XmlParser.class);</span>
+
+    /**
+     * Parses the provided XML schema file into a {@link SchemaObject}.
+     *
+     * @param schemaFile the XML file containing schema information
+     * @return a populated {@link SchemaObject} with the schema name and field list
+     * @throws SchemaParsingException if the file does not exist, has an invalid extension,
+     *                                or cannot be parsed successfully
+     */
+    @Override
+    public SchemaObject parse(File schemaFile) throws SchemaParsingException {
+<span class="fc" id="L56">        logger.info(&quot;Starting XML schema parsing for file: {}&quot;, schemaFile.getAbsolutePath());</span>
+
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (!schemaFile.exists()) {</span>
+<span class="fc" id="L59">            throw new SchemaParsingException(&quot;File not found: &quot; + schemaFile.getAbsolutePath());</span>
+        }
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (!schemaFile.getName().toLowerCase().endsWith(&quot;.xml&quot;)) {</span>
+<span class="fc" id="L62">            throw new SchemaParsingException(&quot;Invalid file format: must be .xml&quot;);</span>
+        }
+
+        try {
+<span class="fc" id="L66">            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L67">            factory.setFeature(&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;, true);</span>
+<span class="fc" id="L68">            DocumentBuilder builder = factory.newDocumentBuilder();</span>
+<span class="fc" id="L69">            Document doc = builder.parse(schemaFile);</span>
+<span class="fc" id="L70">            doc.getDocumentElement().normalize();</span>
+
+            // Extract schema name from &lt;schema name=&quot;...&quot;&gt;
+<span class="fc" id="L73">            Element schemaElement = (Element) doc.getElementsByTagName(&quot;schema&quot;).item(0);</span>
+<span class="fc" id="L74">            String schemaName = schemaElement.getAttribute(&quot;name&quot;);</span>
+
+            // Extract field names from &lt;fields&gt;&lt;field&gt;...&lt;/field&gt;&lt;/fields&gt;
+<span class="fc" id="L77">            NodeList fieldNodes = schemaElement.getElementsByTagName(&quot;field&quot;);</span>
+<span class="fc" id="L78">            List&lt;String&gt; fields = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            for (int i = 0; i &lt; fieldNodes.getLength(); i++) {</span>
+<span class="fc" id="L80">                fields.add(fieldNodes.item(i).getTextContent().trim());</span>
+            }
+
+<span class="fc" id="L83">            logger.info(&quot;Parsed schema name: {}&quot;, schemaName);</span>
+<span class="fc" id="L84">            logger.info(&quot;Parsed fields: {}&quot;, fields);</span>
+
+<span class="fc" id="L86">            return new SchemaObject(schemaName, fields);</span>
+
+<span class="nc" id="L88">        } catch (Exception e) {</span>
+<span class="nc" id="L89">            logger.error(&quot;Error parsing XML schema&quot;, e);</span>
+<span class="nc" id="L90">            throw new SchemaParsingException(&quot;Failed to parse XML schema: &quot; + e.getMessage(), e);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
