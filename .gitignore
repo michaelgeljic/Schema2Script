@@ -1,33 +1,77 @@
-# -------------------------
-# NetBeans related folders
-# -------------------------
-nbproject/private/
-nbproject/Makefile-*.mk
-nbproject/Package-*.bash
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-.nb-gradle/
+# ========================================
+# Java / Maven
+# ========================================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
 
-# -------------------------
-# Compiled class file
-# -------------------------
+# ========================================
+# Compiled class files
+# ========================================
 *.class
-
-# -------------------------
-# Log file
-# -------------------------
-*.log
-
-# -------------------------
-# Package Files
-# -------------------------
 *.jar
 *.war
 *.ear
+*.nar
 *.zip
 *.tar.gz
 *.rar
+
+# ========================================
+# Logs and temporary files
+# ========================================
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*.old
+
+# ========================================
+# IDE and editor directories
+# ========================================
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# ========================================
+# OS-specific files
+# ========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ========================================
+# Backup & other misc
+# ========================================
+*~
