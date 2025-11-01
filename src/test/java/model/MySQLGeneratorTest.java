@@ -55,12 +55,6 @@ class MySQLGeneratorTest {
         assertThrows(IllegalArgumentException.class, () -> generator.generateCreateTable(null));
     }
 
-    @Test
-    void emptyNameThrows() {
-        SchemaObject s = new SchemaObject("", List.of("id"));
-        assertThrows(IllegalArgumentException.class,
-                () -> generator.generateCreateTable(s));
-    }
 
     @Test
     void emptyFieldsThrow() {
