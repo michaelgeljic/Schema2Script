@@ -1,4 +1,0 @@
-{
-    "name":"Person",
-    "fields":["id","firstName","lastName","age"]
-}
