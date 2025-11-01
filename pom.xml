@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.rit</groupId>
+    <groupId>com.geljic</groupId>
     <artifactId>schema2script</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -15,10 +15,6 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-
-        <sonar.projectKey>rit-croatia_iste-422_schema2script800g7_e7d5adcc-3c99-4b00-8eea-e521f086bb75</sonar.projectKey>
-        <sonar.projectName>Schema2Script800G7</sonar.projectName>
-        <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 
     </properties>
 
