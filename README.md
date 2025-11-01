@@ -1,64 +1,73 @@
 # Schema2Script  
 
-Welcome to the **Schema2Script** project repository for ISTE.422 – Application Development Practices.  
-In this project, you will work in teams using the **Scrum methodology** to design and implement an application that converts schema descriptions (e.g., JSON, XML) into SQL scripts for different DBMS platforms (MySQL, PostgreSQL, Oracle). The repository has been pre-configured with structure, milestones, and example issues to help you get started.  
+**Schema2Script** is a Java-based application that converts schema descriptions (such as **JSON** or **XML**) into **SQL scripts** for multiple database management systems, including **MySQL**, **PostgreSQL**, and **Oracle**.  
+
+The project provides a modular and extensible solution for automatically generating database creation scripts from structured schema definitions.  
 
 ---
 
-## What You Have at Your Disposal in GitLab  
+## 🚀 Overview  
 
-### 1. Repository Structure  
-- `src/` – Source code folder (where you will implement your solution).  
-- `resources/` – Sample input files (e.g., JSON schemas).  
-- `doc/` – Documentation folder.  
-- `build.xml` – Ant build file for compiling and running the project.  
-- `README.md` – This file.  
+Schema2Script reads a given schema file that defines database entities, attributes, and relationships, and generates valid SQL scripts compatible with different DBMS platforms.  
 
-### 2. Milestones (Sprints)  
-- **Sprint 1 (Due W06C2)** – pre-populated with issues for the *Generic Input Support* user story.  
-- **Sprint 2 (Due W09C1)** – created but currently empty (to be populated by you).  
-- **Sprint 3 (Due W14C1)** – created but currently empty (to be populated by you).  
-
-### 3. Issue Board  
-- Boards are available for **all three sprints**.  
-- Sprint 1 board is already populated with issues.  
-- Columns: *To Do*, *In Progress*, *Closed*.  
-- Move issues from *To Do* into *In Progress* when you start working on them.  
-- GitLab will automatically move issues to *Closed* once they are completed and closed. 
-
-### 4. Predefined Issues for Sprint 1  
-These issues cover the **Generic Input Support** rubric item:  
-- Define schema parser interface.  
-- Implement JSON schema parser.  
-- Implement dummy XML schema parser.  
-- Create factory for schema parsers.  
-- Integrate schema parser into MVC.  
-- Implement validation and error handling for schema input.  
-
-These issues are provided as **templates** for how to break down work into smaller tasks.  
-
-### 5. Labels  
-The following labels are available to classify issues:  
-- `Generic Input`  
-- `Generic Output`  
-- `Generic Model`  
-- `MVC`  
-- `Factory`  
-
-Use them to tag issues according to the user story they belong to.  
-
-### 6. Next Steps  
-- Complete Sprint 1 issues as assigned (Generic Output, Generic Data Model, MVC Pattern, Factory Pattern).  
-- For Sprint 2 and Sprint 3, the issues are not yet defined — you will be responsible for creating and detailing them once those milestones are released.
-- Follow the Sprint 1 examples: clear title, description, estimate, milestone, and label.  
+Its architecture is designed for flexibility and scalability, allowing easy integration of new schema formats or database dialects through well-defined interfaces and design patterns such as **MVC** and **Factory**.  
 
 ---
 
-## Getting Started (Optional for Setup)  
-1. Clone this repository to your local machine.  
-2. Import the project into your IDE (NetBeans/IntelliJ/Eclipse).  
-3. Use `build.xml` to build and run the project with Ant.  
-4. Commit changes frequently and push them to GitLab.  
-5. Use merge requests to integrate code into the main branch.  
+## 🧩 Key Features  
+
+- **Multi-format schema support** – Parse and process input from JSON and XML schema definitions.  
+- **Multi-DBMS output** – Generate SQL scripts for MySQL, PostgreSQL, and Oracle.  
+- **Extensible architecture** – Add new schema formats or SQL dialects easily.  
+- **Factory pattern** – Dynamically select the appropriate parser or generator based on configuration.  
+- **MVC pattern** – Clear separation between data, logic, and presentation layers.  
+- **Validation & error handling** – Detect schema inconsistencies before SQL generation.  
+
+---
+
+## ⚙️ Architecture  
+
+Schema2Script is composed of several core components:
+
+- **Schema Parser Interface** – Defines the contract for parsing different schema formats.  
+- **Parser Implementations** – Concrete classes for JSON and XML schema parsing.  
+- **SQL Generator** – Converts parsed schema objects into SQL scripts for each supported DBMS.  
+- **Factory** – Provides instances of parsers and generators dynamically.  
+- **MVC Integration** – Organizes code into Model, View, and Controller layers for modularity.  
+
+---
+
+## 🧠 Example Workflow  
+
+1. Provide a schema file (e.g., `example.json` or `example.xml`).  
+2. The system parses the schema using the appropriate parser.  
+3. The parsed data is transformed into an internal database model.  
+4. The SQL generator converts this model into SQL statements.  
+5. The generated SQL script is ready for execution on the target DBMS.  
+
+---
+
+## 🛠️ Technologies Used  
+
+- **Java 17+**  
+- **Maven** (build and dependency management)  
+- **JSON / XML parsing libraries**  
+- **JUnit** (testing framework)  
+
+---
+
+## 🔮 Future Enhancements  
+
+- Support for additional schema formats (e.g., YAML, Avro).  
+- GUI or web-based interface for schema upload and SQL preview.  
+- Integration with database migration/versioning tools.  
+- Advanced schema validation and rule enforcement.  
+
+---
+
+## 📄 License  
+
+This project is open for personal and educational use.  
+You are free to modify, extend, or distribute it under your own terms.  
 
 ---
